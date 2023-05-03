@@ -1,3 +1,12 @@
+let currentCity = 'Atlanta'
+let currentDate = '(9/13/2022)';
+
+currentCityDisplay = document.getElementById('current-city-conditions');
+
+currentCityDisplay.textContent = `${currentCity} ` + `${currentDate}`;
+
+
+
 let currentCityTemp = 25;
 
 const currentTempDisplay = document.getElementById('current-temp');
@@ -24,3 +33,5 @@ const currentHumidityDisplay = document.getElementById('current-humidity');
 let currentHumidity = `Temp: ${currentCityHumidity} %`;
 
 currentHumidityDisplay.textContent = currentHumidity;
+
+
