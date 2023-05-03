@@ -44,11 +44,12 @@
  flex-direction: column;
 }
 .inputElement {
+    height: 30px;
     width: 300px; 
 }
 
 .grey-line {
     margin:10px;
-    border-bottom: solid 5px grey;
+    border-bottom: solid 2px grey;
     width: 300px;
 }
