@@ -10,3 +10,37 @@
     margin-left: 25%;
     color: white;
 }
+
+.searchButton {
+    background-color: rgba(73, 79, 252, 0.76);
+    color: #FFFFFF;
+    padding: 10px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    margin:10px
+}
+
+.searchButton {
+    width: 300px; 
+    font-size: 15px;
+}
+
+.stateButton {
+    background-color: rgba(209, 209, 216, 0.76);
+    color: #060606;
+    padding: 10px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    margin:10px
+}
+
+.stateButton {
+    width: 300px; 
+    font-size: 15px;
+}
+
+.search-flexbox {
+ 
+}
