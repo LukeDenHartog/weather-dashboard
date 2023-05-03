@@ -1,0 +1,12 @@
+.weatherBox {
+    display: flex;
+    justify-content: center;
+    background-color: blueviolet;
+    height: 75px;
+
+}
+
+.txt-content {
+    margin-left: 25%;
+    color: white;
+}
