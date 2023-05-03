@@ -31,8 +31,6 @@
     color: #060606;
     padding: 10px;
     border-radius: 10px;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
     margin:10px
 }
 
@@ -47,4 +45,10 @@
 }
 .inputElement {
     width: 300px; 
+}
+
+.grey-line {
+    margin:10px;
+    border-bottom: solid 5px grey;
+    width: 300px;
 }
