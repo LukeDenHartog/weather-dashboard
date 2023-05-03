@@ -42,5 +42,9 @@
 }
 
 .search-flexbox {
- 
+ display: flex;
+ flex-direction: column;
+}
+.inputElement {
+    width: 300px; 
 }
