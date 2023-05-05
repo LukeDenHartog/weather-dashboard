@@ -11,7 +11,7 @@
     color: white;
 }
 
-.searchButton {
+.search-button {
     background-color: rgba(73, 79, 252, 0.76);
     color: #FFFFFF;
     padding: 10px;
@@ -21,7 +21,7 @@
     margin:10px
 }
 
-.searchButton {
+.search-button {
     width: 300px; 
     font-size: 15px;
 }
@@ -61,3 +61,15 @@
 .left-padding {
     padding-left: 10px;
 }
+
+#main-content-flexbox {
+    display: flex;
+}
+
+#current-city-forecast {
+   flex-grow: 1;
+}
+
+      
+
+  

@@ -8,7 +8,8 @@
 
 
     <link rel="stylesheet" href="./assets/style.css"/>
-    <link rel="stylesheet" href="https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=ccd960f728362c855d666700bf7fb5df"/>
+    <!-- This is the api that we need to get use to access the weather-->
+    <link rel="stylesheet" href="api.openweathermap.org/data/2.5/weather?q=city&appid=weatherAPIKey"/>
 
 </head>
 
@@ -20,44 +21,53 @@
  </div>
 <body>
 
-    
+<div id="main-content-flexbox" class="">  
+
+    <!-- This section is to search for a city-->
+    <div class="search-flexbox">
+        <h2>Search for a City:</h2>
+        <input placeholder="San Diego"id="inputValue" class="inputElement">
+
+        
+        <button class="search-button">Search</button>
+
+        <div class="grey-line"></div>
+
+        <button class="stateButton">Atlanta</button>
+        <button class="stateButton">Denver</button>
+        <button class="stateButton">Seattle</button>
+        <button class="stateButton">San Francisco</button>
+        <button class="stateButton">Orlando</button>
+        <button class="stateButton">New York</button>
+        <button class="stateButton">Chicago</button>
+        <button class="stateButton">Austin</button>
+        
+    </div>
+
+    <div id="current-city-forecast">
+    <!-- This is used to display the values of the current date/current city variables.-->
+        <div class="currentCityDateBox">
+            <h2 id="current-city-conditions" 
+            class="selected-city-box current-conditions left-padding"></h2>
+
+        <!-- These p tags below are used to display the values of the temp/winds/humidity variables.-->
+            <p id="current-temp" class="left-padding"></p>
+
+            <p id="current-winds" class="left-padding"></p>
+
+            <p id="current-humidity" class="left-padding"></p>
+
+        </div>
 
 
-<div class="search-flexbox">
-   <h2>Search for a City:</h2>
-   <input placeholder="San Diego"id="inputValue" class="inputElement">
+        <!-- Now I need to create a section to hold the next 5 days Forecasts. (not including the current dates forecast which is already created above)-->
+        <div id="five-day-forecast" class="five-forcast">
+            <h3>5-Day Forecast:</h3>
 
-  
-   <button class="searchButton">Search</button>
+        </div>
+    </div>
 
-  <div class="grey-line"></div>
-
-   <button class="stateButton">Atlanta</button>
-   <button class="stateButton">Denver</button>
-   <button class="stateButton">Seattle</button>
-   <button class="stateButton">San Francisco</button>
-   <button class="stateButton">Orlando</button>
-   <button class="stateButton">New York</button>
-   <button class="stateButton">Chicago</button>
-   <button class="stateButton">Austin</button>
-    
-</div>
-
-<div class="currentCityDateBox">
-    <h2 id="current-city-conditions" 
-    class="selected-city-box current-conditions left-padding"></h2>
-
-
-    <p id="current-temp" class="left-padding"></p>
-
-    <p id="current-winds" class="left-padding"></p>
-
-    <p id="current-humidity" class="left-padding"></p>
-
-</div>
-
-
-
+</div>  
 
     <script src="assets/script.js"></script>
 </body>
