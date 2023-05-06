@@ -67,13 +67,24 @@ function citySearch() {
      (function(res){
         if (res.ok) {
         return res.json().then(function(weatherData) {
-            
+            console.log(weatherData)
             weatherDataObject = weatherData;
+
+        //This displays the current selected cities temp
            kelvinTemp = weatherDataObject.main.temp;
            let currentCityTemp = (kelvinTemp - 273.15) * 1.8 + 32;
-            console.log(currentCityTemp);
             let currentTemp = `Temp: ${currentCityTemp}°F`;
             currentTempDisplay.textContent = currentTemp;
+
+
+            // Wind Speed output here
+            windSpeedVelocity = weatherDataObject.wind.speed;
+            let currentWinds = `Wind: ${windSpeedVelocity} MPH`;
+            currentWindsDisplay.textContent = currentWinds;
+
+            currentCityHumidity = weatherDataObject.main.humidity;
+            let currentHumidity = `Temp: ${currentCityHumidity} %`;
+            currentHumidityDisplay.textContent = currentHumidity;
         });
     } else {  // If unsuccessful, throw an error
         throw new Error('Error ' + response.status + ': ' + response.statusText);
@@ -90,22 +101,17 @@ var currentTempDisplay = document.getElementById('current-temp');
 
 
 
-let currentCityWinds = 8.43;
+
 
 const currentWindsDisplay = document.getElementById('current-winds');
 
-let currentWinds = `Wind: ${currentCityWinds} MPH`;
-
-currentWindsDisplay.textContent = currentWinds;
 
 
-let currentCityHumidity = 44;
+
+
 
 const currentHumidityDisplay = document.getElementById('current-humidity');
 
-let currentHumidity = `Temp: ${currentCityHumidity} %`;
 
-
-currentHumidityDisplay.textContent = currentHumidity;
 
 
