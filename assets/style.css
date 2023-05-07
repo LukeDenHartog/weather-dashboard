@@ -71,5 +71,11 @@
 }
 
       
-
+.cards-flexbox {
+    display: flex;
+    justify-content: space-evenly;
+}
   
+.temp-humidity {
+    background-color: lightblue;
+}

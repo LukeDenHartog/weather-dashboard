@@ -87,6 +87,7 @@ function citySearch() {
          apiLat = apiObject[0].lat;
          apiLon = apiObject[0].lon;
          callCurrentWeather();
+         callFiveDayForecast()
       })
     } else {
       // If unsuccessful, throw an error
@@ -97,6 +98,38 @@ function citySearch() {
     console.error(error);
   });
 }
+function callFiveDayForecast() {
+    fetch('http://api.openweathermap.org/data/2.5/forecast?lat=' + apiLat +'&lon=' + apiLon + '&appid=ccd960f728362c855d666700bf7fb5df')
+    .then(function(rep){
+        if(rep.ok) {
+            return rep.json().then(function(fiveDayForecastData) {
+                console.log(fiveDayForecastData);
+                fiveDayForecastDataObject = fiveDayForecastData;
+  
+                for (let i = 0; i < 5; i++) {
+                    const item = fiveDayForecastDataObject.list[i];
+                    const container = document.createElement("div");
+                    container.classList.add("temp-humidity");
+                    const temp = document.createElement("p");
+                    temp.textContent = `Temp: ${item.main.temp}`;
+                    container.appendChild(temp);
+                    const humidity = document.createElement("p");
+                    humidity.textContent = `Humidity: ${item.main.humidity}`;
+                    container.appendChild(humidity);
+                    tempCard.appendChild(container);
+                }
+            })     
+        } else {  // If unsuccessful, throw an error
+            throw new Error('Error ' + response.status + ': ' + response.statusText);
+          }
+    })
+  }
+  
+  
+
+    tempCard = document.getElementById("temp-card");
+
+
 
     function callCurrentWeather(){
     fetch('https://api.openweathermap.org/data/2.5/weather?lat='
