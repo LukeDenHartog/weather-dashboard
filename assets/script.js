@@ -1,35 +1,73 @@
-let currentCity = 'Atlanta'
-let currentDate = '(9/13/2022)';
+
+let currentDate = '(Use the time API)';
 var weatherAPIKey = "ccd960f728362c855d666700bf7fb5df";
 var city;
 
 currentCityDisplay = document.getElementById('current-city-conditions');
-currentCityDisplay.textContent = `${currentCity} ` + `${currentDate}`;
 
 
 userInputArea = document.getElementById('inputValue');
 searchButton = document.querySelector('.search-button');
-console.log(searchButton);
-
-
-
-console.log();
-
 
 
 var cityChoice;
 
 
 
-
-
 atlantaButton = document.querySelector('.atlanta-button');
-
 atlantaButton.addEventListener('click', atlantaSearch);
 
 function atlantaSearch() {
-    inputElement.value = "atlanta";
+    inputElement.value = "Atlanta";
 }
+denverButton = document.querySelector('.denver-button');
+denverButton.addEventListener('click', denverSearch);
+
+function denverSearch() {
+    inputElement.value = "Denver";
+}
+
+seattleButton = document.querySelector('.seattle-button');
+seattleButton.addEventListener('click', seattleSearch);
+
+function seattleSearch() {
+    inputElement.value = "Seattle";
+}
+
+sanfransciscoButton = document.querySelector('.sanfranscisco-button');
+sanfransciscoButton.addEventListener('click', sanfransciscoSearch);
+
+function sanfransciscoSearch() {
+    inputElement.value = "San Franscisco";
+}
+orlandoButton = document.querySelector('.orlando-button');
+orlandoButton.addEventListener('click', orlandoSearch);
+
+function orlandoSearch() {
+    inputElement.value = "Orlando";
+}
+
+newyorkButton = document.querySelector('.newyork-button');
+newyorkButton.addEventListener('click', newyorkSearch);
+
+function newyorkSearch() {
+    inputElement.value = "New York";
+}
+
+chicagoButton = document.querySelector('.chicago-button');
+chicagoButton.addEventListener('click', chicagoSearch);
+
+function chicagoSearch() {
+    inputElement.value = "Chicago";
+}
+
+austinButton = document.querySelector('.austin-button');
+austinButton.addEventListener('click', austinSearch);
+
+function austinSearch() {
+    inputElement.value = "Austin";
+}
+
 
 var inputElement = document.getElementById("inputValue");
 searchButton.addEventListener('click', citySearch);
@@ -83,8 +121,13 @@ function citySearch() {
             currentWindsDisplay.textContent = currentWinds;
 
             currentCityHumidity = weatherDataObject.main.humidity;
-            let currentHumidity = `Temp: ${currentCityHumidity} %`;
+            let currentHumidity = `Humidity: ${currentCityHumidity} %`;
             currentHumidityDisplay.textContent = currentHumidity;
+
+            //Displays the current city that has been searched
+            let currentCity = weatherDataObject.name;  
+            currentCityDisplay.textContent = `${currentCity} ` + `${currentDate}`;
+            
         });
     } else {  // If unsuccessful, throw an error
         throw new Error('Error ' + response.status + ': ' + response.statusText);
