@@ -34,11 +34,11 @@ function seattleSearch() {
     inputElement.value = "Seattle";
 }
 
-sanfransciscoButton = document.querySelector('.sanfranscisco-button');
-sanfransciscoButton.addEventListener('click', sanfransciscoSearch);
+sanfranciscoButton = document.querySelector('.sanfrancisco-button');
+sanfranciscoButton.addEventListener('click', sanfranciscoSearch);
 
-function sanfransciscoSearch() {
-    inputElement.value = "San Franscisco";
+function sanfranciscoSearch() {
+    inputElement.value = "San Francisco";
 }
 orlandoButton = document.querySelector('.orlando-button');
 orlandoButton.addEventListener('click', orlandoSearch);
@@ -106,6 +106,12 @@ function callFiveDayForecast() {
                 console.log(fiveDayForecastData);
                 fiveDayForecastDataObject = fiveDayForecastData;
   
+
+                while (tempCard.firstChild) {
+                  tempCard.removeChild(tempCard.firstChild);
+                }
+
+
                 for (let i = 0; i < 5; i++) {
                     const item = fiveDayForecastDataObject.list[i];
                     const container = document.createElement("div");
@@ -124,7 +130,7 @@ function callFiveDayForecast() {
           }
     })
   }
-  
+ 
   
 
     tempCard = document.getElementById("temp-card");
