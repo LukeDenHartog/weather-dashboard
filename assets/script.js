@@ -139,13 +139,17 @@ const searchHistory = document.createElement("button");
 
 let searchHistoryArray = [];
  
+
 function createSearchHistoryButton() {
   let searchHistoryParse = localStorage.getItem("currentCity");
-  searchHistoryArray.push(searchHistoryParse);
-  console.log(searchHistoryArray)
+  
+  if (!searchHistoryArray.includes(searchHistoryParse)) { // The exclamation point before searchHistoryArray is a logical NOT operator. This checks if the array does not include the value of searchHistoryParse. The includes() method returns true if the specified value is found in the array, and false otherwise. By adding the logical NOT operator !, we invert the boolean value returned by includes() so that true becomes false and false becomes true.
+    searchHistoryArray.push(searchHistoryParse);
+    console.log(searchHistoryArray)
 
-  if (searchHistoryArray.length > 8) {
-    searchHistoryArray.splice(0, 1); // delete the first item in the array
+    if (searchHistoryArray.length > 8) {
+      searchHistoryArray.splice(0, 1); // delete the first item in the array
+    }
   }
 }
 
