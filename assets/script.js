@@ -1,5 +1,5 @@
 
-let currentDate = '(Use the time API)';
+
 var weatherAPIKey = "ccd960f728362c855d666700bf7fb5df";
 var city;
 
@@ -70,9 +70,10 @@ function austinSearch() {
 
 
 var inputElement = document.getElementById("inputValue");
-searchButton.addEventListener('click', citySearch);
+searchButton.addEventListener('submit', citySearch);
 
-function citySearch() {
+function citySearch(event) {
+  event.preventDefault();
   // Make a GET request to the API endpoint
   cityChoice = userInputArea.value;
   fetch('http://api.openweathermap.org/geo/1.0/direct?q='
@@ -82,7 +83,7 @@ function citySearch() {
     if (response.ok) {
       // If successful, parse the response data and store it in a variable
       return response.json().then(function(data) {
-        console.log(data);
+       // console.log(data);
          apiObject = data;
          apiLat = apiObject[0].lat;
          apiLon = apiObject[0].lon;
@@ -99,7 +100,7 @@ function citySearch() {
   });
 }
 function callFiveDayForecast() {
-    fetch('http://api.openweathermap.org/data/2.5/forecast?lat=' + apiLat +'&lon=' + apiLon + '&appid=ccd960f728362c855d666700bf7fb5df')
+    fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${apiLat}&lon=${apiLon}&appid=ccd960f728362c855d666700bf7fb5df&units=imperial`)
     .then(function(rep){
         if(rep.ok) {
             return rep.json().then(function(fiveDayForecastData) {
@@ -107,18 +108,26 @@ function callFiveDayForecast() {
                 fiveDayForecastDataObject = fiveDayForecastData;
   
 
-                while (tempCard.firstChild) {
-                  tempCard.removeChild(tempCard.firstChild);
-                }
+            tempCard.textContent = "";
 
 
-                for (let i = 0; i < 5; i++) {
+
+                for (let i = 4; i < 40; i = i + 8) {
                     const item = fiveDayForecastDataObject.list[i];
                     const container = document.createElement("div");
+                    const fiveDayDate = document.createElement("p");
+                    fiveDayDate.textContent = dayjs.unix(item.dt).format("MM/DD/YYYY");
+                    container.appendChild(fiveDayDate);
+                    const image = document.createElement("img")
+                    image.src = `https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`
+                    container.appendChild(image);
                     container.classList.add("temp-humidity");
                     const temp = document.createElement("p");
                     temp.textContent = `Temp: ${item.main.temp}`;
                     container.appendChild(temp);
+                    const fiveDayWind = document.createElement("p");
+                    fiveDayWind.textContent = `Wind: ${item.wind.speed}`;
+                    container.appendChild(fiveDayWind);
                     const humidity = document.createElement("p");
                     humidity.textContent = `Humidity: ${item.main.humidity}`;
                     container.appendChild(humidity);
@@ -139,17 +148,17 @@ function callFiveDayForecast() {
 
     function callCurrentWeather(){
     fetch('https://api.openweathermap.org/data/2.5/weather?lat='
-     + apiLat + '&lon=' + apiLon + '&appid=ccd960f728362c855d666700bf7fb5df')
+     + apiLat + '&lon=' + apiLon + '&appid=ccd960f728362c855d666700bf7fb5df&units=imperial')
      .then
      (function(res){
         if (res.ok) {
         return res.json().then(function(weatherData) {
-            console.log(weatherData)
+            // console.log(weatherData)
             weatherDataObject = weatherData;
 
         //This displays the current selected cities temp
            kelvinTemp = weatherDataObject.main.temp;
-           let currentCityTemp = (kelvinTemp - 273.15) * 1.8 + 32;
+           let currentCityTemp = kelvinTemp
             let currentTemp = `Temp: ${currentCityTemp}°F`;
             currentTempDisplay.textContent = currentTemp;
 
@@ -162,10 +171,11 @@ function callFiveDayForecast() {
             currentCityHumidity = weatherDataObject.main.humidity;
             let currentHumidity = `Humidity: ${currentCityHumidity} %`;
             currentHumidityDisplay.textContent = currentHumidity;
-
+            console.log(weatherDataObject)
             //Displays the current city that has been searched
-            let currentCity = weatherDataObject.name;  
-            currentCityDisplay.textContent = `${currentCity} ` + `${currentDate}`;
+            let currentCity = weatherDataObject.name;
+            let formattedDate = dayjs.unix(weatherDataObject.dt).format('MM/DD/YYYY')
+            currentCityDisplay.innerHTML = `${currentCity} ` + `(${formattedDate}) <img src="https://openweathermap.org/img/wn/${weatherDataObject.weather[0].icon}@2x.png">`;
             
         });
     } else {  // If unsuccessful, throw an error
@@ -174,25 +184,12 @@ function callFiveDayForecast() {
     }); 
 } 
 
-
-
-
 var currentTempDisplay = document.getElementById('current-temp');
-
-
-
-
-
-
 
 const currentWindsDisplay = document.getElementById('current-winds');
 
-
-
-
-
-
 const currentHumidityDisplay = document.getElementById('current-humidity');
+
 
 
 

@@ -56,14 +56,17 @@
 
 .currentCityDateBox {
     border: 3px solid grey;
+    padding: 0 0 1rem 5rem;
+    margin-right: 3rem;
 }
 
 .left-padding {
-    padding-left: 10px;
+   padding-left: 10px;
 }
 
 #main-content-flexbox {
     display: flex;
+   
 }
 
 #current-city-forecast {
@@ -78,4 +81,15 @@
   
 .temp-humidity {
     background-color: lightblue;
+    width: 185px;
+    padding-left: 2rem;
+    border-radius: 2rem;
+}
+
+body {
+    margin: 0;
+  }
+
+#intro-paragraph {
+    line-height: 2.5em;
 }
