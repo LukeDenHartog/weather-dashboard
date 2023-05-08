@@ -27,6 +27,7 @@
 }
 
 .stateButton {
+    display: block;
     background-color: rgba(209, 209, 216, 0.76);
     color: #060606;
     padding: 10px;

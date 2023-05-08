@@ -8,69 +8,13 @@ userInputArea = document.getElementById('inputValue');
 searchButton = document.querySelector('.search-button');
 
 var cityChoice;
-/*
-atlantaButton = document.querySelector('.atlanta-button');
-atlantaButton.addEventListener('click', atlantaSearch);
-
-function atlantaSearch() {
-    inputElement.value = "Atlanta";
-}
-denverButton = document.querySelector('.denver-button');
-denverButton.addEventListener('click', denverSearch);
-
-function denverSearch() {
-    inputElement.value = "Denver";
-}
-
-seattleButton = document.querySelector('.seattle-button');
-seattleButton.addEventListener('click', seattleSearch);
-
-function seattleSearch() {
-    inputElement.value = "Seattle";
-}
-
-sanfranciscoButton = document.querySelector('.sanfrancisco-button');
-sanfranciscoButton.addEventListener('click', sanfranciscoSearch);
-
-function sanfranciscoSearch() {
-    inputElement.value = "San Francisco";
-}
-orlandoButton = document.querySelector('.orlando-button');
-orlandoButton.addEventListener('click', orlandoSearch);
-
-function orlandoSearch() {
-    inputElement.value = "Orlando";
-}
-
-newyorkButton = document.querySelector('.newyork-button');
-newyorkButton.addEventListener('click', newyorkSearch);
-
-function newyorkSearch() {
-    inputElement.value = "New York";
-}
-
-chicagoButton = document.querySelector('.chicago-button');
-chicagoButton.addEventListener('click', chicagoSearch);
-
-function chicagoSearch() {
-    inputElement.value = "Chicago";
-}
-
-austinButton = document.querySelector('.austin-button');
-austinButton.addEventListener('click', austinSearch);
-
-function austinSearch() {
-    inputElement.value = "Austin";
-}
-*/
-
-
-
+var cityName;
 searchButton.addEventListener('submit', citySearch);
 
-function citySearch(event) {
+
+function citySearch(event, buttonText) {
   event.preventDefault();
-  cityChoice = userInputArea.value;
+  cityChoice = buttonText || cityName || userInputArea.value;
   fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + cityChoice + '&limit=1&appid=ccd960f728362c855d666700bf7fb5df')
   .then(function(response) {
     if (response.ok) {
@@ -88,6 +32,7 @@ function citySearch(event) {
         callCurrentWeather();
         callFiveDayForecast();
         createSearchHistoryButton()
+        displaySearchHistoryButtons()
       })
     } else {
       throw new Error('Error ' + response.status + ': ' + response.statusText);
@@ -145,8 +90,7 @@ function callFiveDayForecast() {
     function callCurrentWeather(){
     fetch('https://api.openweathermap.org/data/2.5/weather?lat='
      + apiLat + '&lon=' + apiLon + '&appid=ccd960f728362c855d666700bf7fb5df&units=imperial')
-     .then
-     (function(res){
+     .then(function(res){
         if (res.ok) {
         return res.json().then(function(weatherData) {
             // console.log(weatherData)
@@ -179,7 +123,7 @@ function callFiveDayForecast() {
         throw new Error('Error ' + response.status + ': ' + response.statusText);
       }
     }); 
-} 
+  }
 
 var currentTempDisplay = document.getElementById('current-temp');
 
@@ -203,5 +147,37 @@ function createSearchHistoryButton() {
   if (searchHistoryArray.length > 8) {
     searchHistoryArray.splice(0, 1); // delete the first item in the array
   }
-
 }
+
+
+
+function displaySearchHistoryButtons() {
+  let searchHistoryDiv = document.getElementById("button-container");
+
+  // Clear the previous search history buttons
+  searchHistoryDiv.innerHTML = "";
+
+  // Loop through the search history array and create a button for each item
+  searchHistoryArray.forEach(function(item) {
+
+    let button = document.createElement("button");
+    button.textContent = item.charAt(0).toUpperCase() + item.slice(1); // capitalize first letter of text
+    button.classList.add("stateButton"); // add class to button element
+    searchHistoryDiv.appendChild(button);
+    
+    
+button.addEventListener("click", function(eventbuttonText) {
+
+  let buttonText = this.textContent; // retrieve text content of button element
+  userInputArea.value = buttonText;
+  console.log(buttonText); // log text content to console (replace with your own code)
+  citySearch(eventbuttonText);
+  searchHistoryButtons = document.querySelector(".statebutton")
+  
+});    
+  });
+}
+
+
+
+
