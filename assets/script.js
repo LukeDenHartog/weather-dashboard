@@ -15,7 +15,7 @@ searchButton.addEventListener('submit', citySearch);
 function citySearch(event, buttonText) {
   event.preventDefault();
   cityChoice = buttonText || cityName || userInputArea.value;
-  fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + cityChoice + '&limit=1&appid=ccd960f728362c855d666700bf7fb5df')
+  fetch('https://api.openweathermap.org/geo/1.0/direct?q=' + cityChoice + '&limit=1&appid=ccd960f728362c855d666700bf7fb5df')
   .then(function(response) {
     if (response.ok) {
       return response.json().then(function(data) {
@@ -44,7 +44,7 @@ function citySearch(event, buttonText) {
 }
 
 function callFiveDayForecast() {
-    fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${apiLat}&lon=${apiLon}&appid=ccd960f728362c855d666700bf7fb5df&units=imperial`)
+    fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${apiLat}&lon=${apiLon}&appid=ccd960f728362c855d666700bf7fb5df&units=imperial`)
     .then(function(rep){
         if(rep.ok) {
             return rep.json().then(function(fiveDayForecastData) {
