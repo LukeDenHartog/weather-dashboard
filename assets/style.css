@@ -13,6 +13,7 @@
 .search-button {
     background-color: rgba(73, 79, 252, 0.76);
     color: #FFFFFF;
+    margin: 20px;
     padding: 10px;
     border-radius: 10px;
     -moz-border-radius: 10px;
