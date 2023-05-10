@@ -7,7 +7,6 @@
 }
 
 .txt-content {
-    margin-left: 25%;
     color: white;
 }
 
@@ -18,13 +17,16 @@
     border-radius: 10px;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
-    margin:10px
-}
-
-.search-button {
-    width: 300px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     font-size: 15px;
 }
+ 
+  #button-styles {
+    width: 100px;
+  }
+  
 
 .stateButton {
     display: block;
@@ -44,10 +46,11 @@
  display: flex;
  flex-direction: column;
 }
+
 .inputElement {
     height: 30px;
-    width: 300px; 
-}
+    width: 100%;
+  }
 
 .grey-line {
     margin:10px;
@@ -93,8 +96,4 @@ body {
 
 #intro-paragraph {
     line-height: 2.5em;
-}
-
-#button-styles {
-    
 }
