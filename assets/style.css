@@ -1,7 +1,7 @@
 .weatherBox {
     display: flex;
     justify-content: center;
-    background-color: blueviolet;
+    background-color: rgba(73, 79, 252, 0.76);
     height: 75px;
 
 }

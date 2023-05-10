@@ -1,16 +1,17 @@
 var weatherAPIKey = "ccd960f728362c855d666700bf7fb5df";
 var city;
-
-currentCityDisplay = document.getElementById('current-city-conditions');
-
-
-userInputArea = document.getElementById('inputValue');
-searchButton = document.querySelector('.search-button');
-
 var cityChoice;
 var cityName;
+currentCityDisplay = document.getElementById('current-city-conditions');
+userInputArea = document.getElementById('inputValue');
+searchButton = document.querySelector('.search-button');
+tempCard = document.getElementById("temp-card");
+var currentTempDisplay = document.getElementById('current-temp');
+const currentWindsDisplay = document.getElementById('current-winds');
+const currentHumidityDisplay = document.getElementById('current-humidity');
+greyLineSelector = document.querySelector('.grey-line');
+const searchHistory = document.createElement("button");
 searchButton.addEventListener('submit', citySearch);
-
 
 function citySearch(event, buttonText) {
   event.preventDefault();
@@ -27,8 +28,6 @@ function citySearch(event, buttonText) {
         let currentCity = cityChoice;
         localStorage.setItem('currentCity', currentCity);
         
-      
-  
         callCurrentWeather();
         callFiveDayForecast();
         createSearchHistoryButton()
@@ -80,13 +79,6 @@ function callFiveDayForecast() {
           }
     })
   }
- 
- 
-  
-
-    tempCard = document.getElementById("temp-card");
-
-
 
     function callCurrentWeather(){
     fetch('https://api.openweathermap.org/data/2.5/weather?lat='
@@ -103,7 +95,6 @@ function callFiveDayForecast() {
             let currentTemp = `Temp: ${currentCityTemp}°F`;
             currentTempDisplay.textContent = currentTemp;
 
-
             // Wind Speed output here
             windSpeedVelocity = weatherDataObject.wind.speed;
             let currentWinds = `Wind: ${windSpeedVelocity} MPH`;
@@ -117,8 +108,7 @@ function callFiveDayForecast() {
             let currentCity = weatherDataObject.name;
             let formattedDate = dayjs.unix(weatherDataObject.dt).format('MM/DD/YYYY')
             currentCityDisplay.innerHTML = `${currentCity} ` + `(${formattedDate}) <img src="https://openweathermap.org/img/wn/${weatherDataObject.weather[0].icon}@2x.png">`;
-            
-        
+               
         });
     } else {  // If unsuccessful, throw an error
         throw new Error('Error ' + response.status + ': ' + response.statusText);
@@ -126,21 +116,8 @@ function callFiveDayForecast() {
     }); 
   }
 
-var currentTempDisplay = document.getElementById('current-temp');
-
-const currentWindsDisplay = document.getElementById('current-winds');
-
-const currentHumidityDisplay = document.getElementById('current-humidity');
-
-
-greyLineSelector = document.querySelector('.grey-line');
-const searchHistory = document.createElement("button");
-
-
-
 let searchHistoryArray = [];
  
-
 function createSearchHistoryButton() {
   let searchHistoryParse = localStorage.getItem("currentCity");
   
@@ -153,8 +130,6 @@ function createSearchHistoryButton() {
     }
   }
 }
-
-
 
 function displaySearchHistoryButtons() {
   let searchHistoryDiv = document.getElementById("button-container");
@@ -169,8 +144,7 @@ function displaySearchHistoryButtons() {
     button.textContent = item.charAt(0).toUpperCase() + item.slice(1); // capitalize first letter of text
     button.classList.add("stateButton"); // add class to button element
     searchHistoryDiv.appendChild(button);
-    
-    
+       
 button.addEventListener("click", function(eventbuttonText) {
 
   let buttonText = this.textContent; // retrieve text content of button element
@@ -178,11 +152,6 @@ button.addEventListener("click", function(eventbuttonText) {
   console.log(buttonText); // log text content to console (replace with your own code)
   citySearch(eventbuttonText);
   searchHistoryButtons = document.querySelector(".statebutton")
-  
 });    
   });
 }
-
-
-
-
