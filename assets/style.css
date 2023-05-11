@@ -60,13 +60,14 @@
 }
 
 .currentCityDateBox {
+    background-color: lightblue;
     border: 3px solid grey;
     padding: 0 0 1rem 5rem;
     margin-right: 3rem;
 }
 
 .left-padding {
-   padding-left: 10px;
+   padding-left: 140px;
 }
 
 #main-content-flexbox {

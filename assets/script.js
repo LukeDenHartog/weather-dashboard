@@ -15,7 +15,8 @@ searchButton.addEventListener('submit', citySearch);
 
 function citySearch(event, buttonText) {
   event.preventDefault();
-  cityChoice = buttonText || cityName || userInputArea.value;
+
+  cityChoice = buttonText || cityName || userInputArea.value.charAt(0).toUpperCase() + userInputArea.value.slice(1);
   fetch('https://api.openweathermap.org/geo/1.0/direct?q=' + cityChoice + '&limit=1&appid=ccd960f728362c855d666700bf7fb5df')
   .then(function(response) {
     if (response.ok) {
@@ -107,7 +108,7 @@ function callFiveDayForecast() {
             //Displays the current city that has been searched
             let currentCity = weatherDataObject.name;
             let formattedDate = dayjs.unix(weatherDataObject.dt).format('MM/DD/YYYY')
-            currentCityDisplay.innerHTML = `${currentCity} ` + `(${formattedDate}) <img src="https://openweathermap.org/img/wn/${weatherDataObject.weather[0].icon}@2x.png">`;
+            currentCityDisplay.innerHTML = `<img src="https://openweathermap.org/img/wn/${weatherDataObject.weather[0].icon}@2x.png">${currentCity} ` + `(${formattedDate}) <img src="https://openweathermap.org/img/wn/${weatherDataObject.weather[0].icon}@2x.png">`;
                
         });
     } else {  // If unsuccessful, throw an error
