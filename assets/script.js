@@ -12,6 +12,11 @@ const currentHumidityDisplay = document.getElementById('current-humidity');
 greyLineSelector = document.querySelector('.grey-line');
 const searchHistory = document.createElement("button");
 searchButton.addEventListener('submit', citySearch);
+searchButton.addEventListener('submit', searchHistoryArrayStorage);
+
+
+function searchHistoryArrayStorage() {localStorage.setItem("searchHistoryArray", JSON.stringify(searchHistoryArray));
+}
 
 function citySearch(event, buttonText) {
   event.preventDefault();
@@ -118,7 +123,7 @@ function callFiveDayForecast() {
   }
 
 let searchHistoryArray = [];
- 
+
 function createSearchHistoryButton() {
   let searchHistoryParse = localStorage.getItem("currentCity");
   
