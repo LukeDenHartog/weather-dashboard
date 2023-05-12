@@ -1,12 +1,13 @@
 # weather-dashboard
 
-![Site screnshot](./Assets/weather-dashboard-picture.jpg)
+![Site screnshot](./assets/weather-dashboard-picture.jpg)
 
 
 Link to deployed application: https://afrozez.github.io/weather-dashboard/
 
 
 ## This project tested all of my previous knowledge using Server-Side APIs and JavaScript.
+
 I searched the documentation for multiple different API calls to add the current weather data along with the following 5 day forecast data.
 I got some much needed practice using APIs and have a much better grasp on how to set/get data from local storage. This is NOT considered a complete project and should be seen as a work in progress at the moment.
 
