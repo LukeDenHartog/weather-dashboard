@@ -1,4 +1,4 @@
-var weatherAPIKey = "ccd960f728362c855d666700bf7fb5df";
+
 var city;
 var cityChoice;
 var cityName;
@@ -12,11 +12,11 @@ const currentHumidityDisplay = document.getElementById('current-humidity');
 greyLineSelector = document.querySelector('.grey-line');
 const searchHistory = document.createElement("button");
 searchButton.addEventListener('submit', citySearch);
-searchButton.addEventListener('submit', searchHistoryArrayStorage);
+let searchHistoryDiv = document.getElementById("button-container");
+searchHistoryButtons = document.querySelector(".statebutton")
+searchHistoryDiv.innerHTML = "";
+var weatherAPIKey = "ccd960f728362c855d666700bf7fb5df";
 
-
-function searchHistoryArrayStorage() {localStorage.setItem("searchHistoryArray", JSON.stringify(searchHistoryArray));
-}
 
 function citySearch(event, buttonText) {
   event.preventDefault();
@@ -37,7 +37,7 @@ function citySearch(event, buttonText) {
         callCurrentWeather();
         callFiveDayForecast();
         createSearchHistoryButton()
-        displaySearchHistoryButtons()
+        searchButtonCreation()
       })
     } else {
       throw new Error('Error ' + response.status + ': ' + response.statusText);
@@ -122,42 +122,59 @@ function callFiveDayForecast() {
     }); 
   }
 
-let searchHistoryArray = [];
+  let searchHistoryArray = JSON.parse(localStorage.getItem("myArrayKey"));
+
+  if (!searchHistoryArray) {
+    searchHistoryArray = [];
+  }
+
+
+
+
 
 function createSearchHistoryButton() {
   let searchHistoryParse = localStorage.getItem("currentCity");
   
   if (!searchHistoryArray.includes(searchHistoryParse)) { // The exclamation point before searchHistoryArray is a logical NOT operator. This checks if the array does not include the value of searchHistoryParse. The includes() method returns true if the specified value is found in the array, and false otherwise. By adding the logical NOT operator !, we invert the boolean value returned by includes() so that true becomes false and false becomes true.
     searchHistoryArray.push(searchHistoryParse);
-    console.log(searchHistoryArray)
-
+    // Convert the array to a JSON string
+    const myArrayString = JSON.stringify(searchHistoryArray);
+    // Save the JSON string to local storage
+    localStorage.setItem("myArrayKey", myArrayString);
+    previouslySearchedCities = localStorage.getItem("myArrayKey");
+   
     if (searchHistoryArray.length > 8) {
       searchHistoryArray.splice(0, 1); // delete the first item in the array
     }
   }
 }
+let existingValues = [];
 
-function displaySearchHistoryButtons() {
-  let searchHistoryDiv = document.getElementById("button-container");
+function searchButtonCreation() {
 
-  // Clear the previous search history buttons
-  searchHistoryDiv.innerHTML = "";
-
-  // Loop through the search history array and create a button for each item
   searchHistoryArray.forEach(function(item) {
-
-    let button = document.createElement("button");
+  
+    if (!existingValues.includes(item))
+    button = document.createElement("button");
     button.textContent = item.charAt(0).toUpperCase() + item.slice(1); // capitalize first letter of text
     button.classList.add("stateButton"); // add class to button element
     searchHistoryDiv.appendChild(button);
-       
-button.addEventListener("click", function(eventbuttonText) {
 
-  let buttonText = this.textContent; // retrieve text content of button element
-  userInputArea.value = buttonText;
-  console.log(buttonText); // log text content to console (replace with your own code)
-  citySearch(eventbuttonText);
-  searchHistoryButtons = document.querySelector(".statebutton")
-});    
+          
+    button.addEventListener("click", function(eventbuttonText) {
+
+      let buttonText = this.textContent; // retrieve text content of button element
+      userInputArea.value = buttonText;
+      console.log(buttonText); // log text content to console (replace with your own code)
+      citySearch(eventbuttonText);
+    });    
+    existingValues.push(item);
   });
+
 }
+ searchButtonCreation()
+ 
+
+
+
+
