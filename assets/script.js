@@ -156,7 +156,16 @@ function searchButtonCreation() {
   
     if (!existingValues.includes(item))
     button = document.createElement("button");
-    button.textContent = item.charAt(0).toUpperCase() + item.slice(1); // capitalize first letter of text
+    //This line splits the item string into an array of words using the space character as the separator. For example, if the item is "new york," it will create an array words with two elements: ["new", "york"].
+    words = item.split(" ");
+
+    if (words.length > 1) {
+      capitalText = words[0].charAt(0).toUpperCase() + words[0].slice(1) + " " + words[1].charAt(0).toUpperCase() + words[1].slice(1);
+    } else {  // the slice method is a JavaScript string method used to extract a portion of a string and return it as a new string
+      capitalText = item.charAt(0).toUpperCase() + item.slice(1);
+    }
+  
+    button.textContent = capitalText;
     button.classList.add("stateButton"); // add class to button element
     searchHistoryDiv.appendChild(button);
 
@@ -170,8 +179,8 @@ function searchButtonCreation() {
     });    
     existingValues.push(item);
   });
-
 }
+
  searchButtonCreation()
  
 
