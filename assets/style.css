@@ -62,8 +62,9 @@
 .currentCityDateBox {
     background-color: lightblue;
     border: 3px solid grey;
+    border-radius: 30px;
     padding: 0 0 1rem 5rem;
-    margin-right: 3rem;
+    margin: 3rem;
 }
 
 .left-padding {
@@ -79,7 +80,9 @@
    flex-grow: 1;
 }
 
-      
+#placeholder-text {
+
+} 
 .cards-flexbox {
     display: flex;
     justify-content: space-evenly;
@@ -98,4 +101,13 @@ body {
 
 #intro-paragraph {
     line-height: 2.5em;
+    margin: 20px 60px 60px 60px;
+}
+
+.arrow {
+    width: 0;
+    height: 0;
+    border-top: 50px solid transparent;
+    border-bottom: 50px solid transparent;
+    border-right: 50px solid black;
 }
