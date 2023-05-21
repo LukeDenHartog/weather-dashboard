@@ -16,12 +16,18 @@ let searchHistoryDiv = document.getElementById("button-container");
 searchHistoryButtons = document.querySelector(".statebutton")
 searchHistoryDiv.innerHTML = "";
 var weatherAPIKey = "ccd960f728362c855d666700bf7fb5df";
-
-
-function citySearch(event, buttonText) {
+ 
+function citySearch(event, words) {
   event.preventDefault();
-
-  cityChoice = buttonText || cityName || userInputArea.value.charAt(0).toUpperCase() + userInputArea.value.slice(1);
+  inputValue = userInputArea.value;
+  words = inputValue.split(" ");
+  //This line splits the item string into an array of words using the space character as the separator. For example, if the item is "new york," it will create an array words with two elements: ["new", "york"].
+  if (words.length > 1) {
+    capitalText = words[0].charAt(0).toUpperCase() + words[0].slice(1) + " " + words[1].charAt(0).toUpperCase() + words[1].slice(1);
+  } else {  // the slice method is a JavaScript string method used to extract a portion of a string and return it as a new string
+    capitalText = item.charAt(0).toUpperCase() + item.slice(1);
+  }
+  cityChoice = capitalText;
   fetch('https://api.openweathermap.org/geo/1.0/direct?q=' + cityChoice + '&limit=1&appid=ccd960f728362c855d666700bf7fb5df')
   .then(function(response) {
     if (response.ok) {
@@ -55,8 +61,7 @@ function callFiveDayForecast() {
             return rep.json().then(function(fiveDayForecastData) {
                 console.log(fiveDayForecastData);
                 fiveDayForecastDataObject = fiveDayForecastData;
-
-            tempCard.textContent = "";
+                tempCard.textContent = "";
 
                 for (let i = 4; i < 40; i = i + 8) {
                     const item = fiveDayForecastDataObject.list[i];
@@ -128,10 +133,6 @@ function callFiveDayForecast() {
     searchHistoryArray = [];
   }
 
-
-
-
-
 function createSearchHistoryButton() {
   let searchHistoryParse = localStorage.getItem("currentCity");
   
@@ -153,23 +154,14 @@ let existingValues = [];
 function searchButtonCreation() {
 
   searchHistoryArray.forEach(function(item) {
-  
+
     if (!existingValues.includes(item))
     button = document.createElement("button");
-    //This line splits the item string into an array of words using the space character as the separator. For example, if the item is "new york," it will create an array words with two elements: ["new", "york"].
-    words = item.split(" ");
-
-    if (words.length > 1) {
-      capitalText = words[0].charAt(0).toUpperCase() + words[0].slice(1) + " " + words[1].charAt(0).toUpperCase() + words[1].slice(1);
-    } else {  // the slice method is a JavaScript string method used to extract a portion of a string and return it as a new string
-      capitalText = item.charAt(0).toUpperCase() + item.slice(1);
-    }
-  
-    button.textContent = capitalText;
+    button.textContent = item.charAt(0).toUpperCase() + item.slice(1); // capitalize first letter of text
     button.classList.add("stateButton"); // add class to button element
     searchHistoryDiv.appendChild(button);
 
-          
+
     button.addEventListener("click", function(eventbuttonText) {
 
       let buttonText = this.textContent; // retrieve text content of button element
@@ -180,7 +172,6 @@ function searchButtonCreation() {
     existingValues.push(item);
   });
 }
-
  searchButtonCreation()
  
 
