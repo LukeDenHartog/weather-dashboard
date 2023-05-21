@@ -25,7 +25,7 @@ function citySearch(event, words) {
   if (words.length > 1) {
     capitalText = words[0].charAt(0).toUpperCase() + words[0].slice(1) + " " + words[1].charAt(0).toUpperCase() + words[1].slice(1);
   } else {  // the slice method is a JavaScript string method used to extract a portion of a string and return it as a new string
-    capitalText = item.charAt(0).toUpperCase() + item.slice(1);
+    capitalText = inputValue.charAt(0).toUpperCase() + inputValue.slice(1);
   }
   cityChoice = capitalText;
   fetch('https://api.openweathermap.org/geo/1.0/direct?q=' + cityChoice + '&limit=1&appid=ccd960f728362c855d666700bf7fb5df')
@@ -150,31 +150,43 @@ function createSearchHistoryButton() {
   }
 }
 let existingValues = [];
-
 function searchButtonCreation() {
-
   searchHistoryArray.forEach(function(item) {
+      // Check if a button with the same text content already exists
+    var buttonText = item.charAt(0).toUpperCase() + item.slice(1); // capitalize first letter of text
+    var existingButton = Array.from(searchHistoryDiv.getElementsByTagName("button")).find(function(button) { 
+ 
+      //searchHistoryDiv.getElementsByTagName("button") retrieves all HTML elements within the searchHistoryDiv element that have the tag name "button". This returns an HTMLCollection (a live collection of elements).
+    
+      // Array.from(...) converts the HTMLCollection to an array. This step is necessary because the HTMLCollection does not have array methods like find. By converting it to an array, we can use array methods on it.
 
-    if (!existingValues.includes(item))
+      // .find(function(button) { ... }) uses the find method to search for a specific button within the array. The find method executes the provided function once for each element in the array until it finds a button that satisfies the condition specified in the function.
+
+      // function(button) is the function passed as an argument to find. It takes an individual button element from the array as a parameter and performs a condition check.
+
+      return button.textContent.toLowerCase() === buttonText.toLowerCase();
+    });
+
+    if (existingButton) {
+      return; // Skip creating the button
+    } //if the function finds the array inside of the HTMLCollection it will not continue executing the rest of the function.
+
     button = document.createElement("button");
-    button.textContent = item.charAt(0).toUpperCase() + item.slice(1); // capitalize first letter of text
+    button.textContent = buttonText; 
     button.classList.add("stateButton"); // add class to button element
     searchHistoryDiv.appendChild(button);
 
-
     button.addEventListener("click", function(eventbuttonText) {
-
       let buttonText = this.textContent; // retrieve text content of button element
       userInputArea.value = buttonText;
-      console.log(buttonText); // log text content to console (replace with your own code)
+      console.log(buttonText);
       citySearch(eventbuttonText);
-    });    
+    });
     existingValues.push(item);
+    console.log(item);
   });
 }
- searchButtonCreation()
- 
 
-
+searchButtonCreation() 
 
 
