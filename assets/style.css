@@ -111,3 +111,39 @@ body {
     border-bottom: 50px solid transparent;
     border-right: 50px solid black;
 }
+
+
+@media screen and (max-width: 1475px) {
+#main-content-flexbox {
+    display: flex;
+    flex-direction: column;
+    }
+    #button-container {
+        display:flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .grey-line {
+        display: none;
+    } 
+}
+
+@media screen and (max-width: 1115px) {
+    #five-day-h2 {
+        display: none;
+    }
+    #five-day-forecast {
+        display: flex;
+        justify-content: center;
+    }
+    .cards-flexbox {
+        flex-direction: column;
+    }
+    .temp-humidity { 
+    background-color: lightblue;
+    border: 3px solid grey;
+    border-radius: 30px;
+    padding: 0 0 1rem 5rem;
+    margin-bottom: 25px;
+    }
+}
