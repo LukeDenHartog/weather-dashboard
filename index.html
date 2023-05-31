@@ -1,68 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
-
-
-    <link rel="stylesheet" href="./assets/style.css"/>
+    <link rel="stylesheet" href="./assets/style.css" />
     <!-- This is the api that we need to get use to access the weather-->
-
 </head>
 
-
-<div class="weatherBox">
-
-
-<div class="txt-content"><h1>Weather Dashboard</h1></div>
- </div>
 <body>
-
-<div id="main-content-flexbox" class="">  
-
-    <!-- This section is to search for a city-->
-    <div class="search-flexbox">
-        <form class="search-button">
-        <h2>Search for a City:</h2>
-        <input placeholder="San Diego"id="inputValue" class="inputElement">
-
-        
-        <button id ="button-styles" type="submit">Search</button>
-    </form>
-        <div class="grey-line"></div>
-        <div id="button-container"></div>
-    </div>
-
-    <div id="current-city-forecast">
-    <!-- This is used to display the values of the current date/current city variables.-->
-        <div class="currentCityDateBox">
-            <h2 id="current-city-conditions" 
-            class="selected-city-box current-conditions"><a id="placeholder-text">  Please enter a specific city into the search menu.</a></h2>
-    
-
-        <!-- These p tags below are used to display the values of the temp/winds/humidity variables.-->
-            <p id="current-temp" class="left-padding"></p>
-
-            <p id="current-winds" class="left-padding"></p>
-
-            <p id="current-humidity" class="left-padding"></p>
-
-        </div>
-
-
-        <!-- Now I need to create a section to hold the next 5 days Forecasts. (not including the current dates forecast which is already created above)-->
-        <div id="five-day-forecast" class="five-forcast">
-            <h2 id="five-day-h2">5-Day Forecast:</h2>
-            <h3 id="temp-card" class="cards-flexbox"><a id="intro-paragraph">Upon entering the designated city, a display of the upcoming five-day projection will be presented. This web application will display relevant information like, wind speed, humidity, and the temperature. Above the 5-Day Forecast section will display the current weather conditions.</h3></a>
+    <div class="weatherBox">
+        <div class="txt-content">
+            <h1>Weather Dashboard</h1>
         </div>
     </div>
 
-</div>  
-<script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <div id="main-content-flexbox" class="">
+        <!-- This section is to search for a city-->
+        <div class="search-flexbox">
+            <form class="search-button">
+                <h2>Search for a City:</h2>
+                <input placeholder="San Diego" id="inputValue" class="inputElement" />
+                <button id="button-styles" type="submit">Search</button>
+            </form>
+            <div class="grey-line"></div>
+            <div id="button-container"></div>
+        </div>
+
+        <div id="current-city-forecast">
+            <!-- This is used to display the values of the current date/current city variables.-->
+            <div class="currentCityDateBox">
+                <h2 id="current-city-conditions" class="selected-city-box current-conditions">
+                    <a id="placeholder-text">Please enter a specific city into the search menu.</a>
+                </h2>
+
+                <!-- These p tags below are used to display the values of the temp/winds/humidity variables.-->
+                <p id="current-temp" class="left-padding"></p>
+                <p id="current-winds" class="left-padding"></p>
+                <p id="current-humidity" class="left-padding"></p>
+            </div>
+
+            <!-- Now I need to create a section to hold the next 5 days Forecasts. (not including the current dates forecast which is already created above)-->
+            <div id="five-day-forecast" class="five-forcast">
+                <h2 id="five-day-h2">5-Day Forecast:</h2>
+                <h3 id="temp-card" class="cards-flexbox">
+                    <a id="intro-paragraph">Upon entering the designated city, a display of the upcoming five-day projection will be presented. This web application will display relevant information like wind speed, humidity, and the temperature. Above the 5-Day Forecast section will display the current weather conditions.</a>
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
     <script src="assets/script.js"></script>
 </body>
-
 
 </html>

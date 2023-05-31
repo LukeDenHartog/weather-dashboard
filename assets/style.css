@@ -5,11 +5,9 @@
     height: 75px;
 
 }
-
 .txt-content {
     color: white;
 }
-
 .search-button {
     background-color: rgba(73, 79, 252, 0.76);
     color: #FFFFFF;
@@ -23,12 +21,9 @@
     align-items: center;
     font-size: 15px;
 }
- 
   #button-styles {
     width: 100px;
   }
-  
-
 .stateButton {
     display: block;
     background-color: rgba(209, 209, 216, 0.76);
@@ -37,28 +32,23 @@
     border-radius: 10px;
     margin:10px
 }
-
 .stateButton {
     width: 300px; 
     font-size: 15px;
 }
-
 .search-flexbox {
  display: flex;
  flex-direction: column;
 }
-
 .inputElement {
     height: 30px;
     width: 100%;
-  }
-
+}
 .grey-line {
     margin:10px;
     border-bottom: solid 2px grey;
     width: 300px;
 }
-
 .currentCityDateBox {
     background-color: lightblue;
     border: 3px solid grey;
@@ -66,44 +56,32 @@
     padding: 0 0 1rem 5rem;
     margin: 3rem;
 }
-
 .left-padding {
    padding-left: 140px;
 }
-
 #main-content-flexbox {
-    display: flex;
-   
+    display: flex; 
 }
-
 #current-city-forecast {
    flex-grow: 1;
 }
-
-#placeholder-text {
-
-} 
 .cards-flexbox {
     display: flex;
     justify-content: space-evenly;
-}
-  
+} 
 .temp-humidity {
     background-color: lightblue;
     width: 185px;
     padding-left: 2rem;
     border-radius: 2rem;
 }
-
 body {
     margin: 0;
   }
-
 #intro-paragraph {
     line-height: 2.5em;
     margin: 20px 60px 60px 60px;
 }
-
 .arrow {
     width: 0;
     height: 0;
@@ -111,8 +89,18 @@ body {
     border-bottom: 50px solid transparent;
     border-right: 50px solid black;
 }
-
-
+#current-temp {
+    font-size: 1.17em;
+    font-weight: bold;
+}
+#current-winds {
+    font-size: 1.17em;
+    font-weight: bold;
+}
+#current-humidity {
+    font-size: 1.17em;
+    font-weight: bold;
+}
 @media screen and (max-width: 1475px) {
 #main-content-flexbox {
     display: flex;
@@ -127,7 +115,6 @@ body {
         display: none;
     } 
 }
-
 @media screen and (max-width: 1115px) {
     #five-day-h2 {
         display: none;
