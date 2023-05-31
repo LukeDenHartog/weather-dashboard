@@ -1,15 +1,15 @@
 .weatherBox {
     display: flex;
     justify-content: center;
-    background-color: rgba(73, 79, 252, 0.76);
+    background-color: #525c67;
     height: 75px;
-
+    box-shadow: 10px 10px 10px lightblue;
 }
 .txt-content {
     color: white;
 }
 .search-button {
-    background-color: rgba(73, 79, 252, 0.76);
+    background-color: #525c67;
     color: #FFFFFF;
     margin: 20px;
     padding: 10px;
@@ -20,21 +20,21 @@
     flex-direction: column;
     align-items: center;
     font-size: 15px;
+    box-shadow: 10px 10px 10px black;
 }
   #button-styles {
     width: 100px;
   }
 .stateButton {
     display: block;
-    background-color: rgba(209, 209, 216, 0.76);
+    background-color: white;
     color: #060606;
     padding: 10px;
     border-radius: 10px;
-    margin:10px
-}
-.stateButton {
+    margin:10px;
     width: 300px; 
     font-size: 15px;
+    box-shadow: 2px 2px black;
 }
 .search-flexbox {
  display: flex;
@@ -55,6 +55,7 @@
     border-radius: 30px;
     padding: 0 0 1rem 5rem;
     margin: 3rem;
+    box-shadow: 10px 10px 20px black;
 }
 .left-padding {
    padding-left: 140px;
@@ -71,11 +72,14 @@
 } 
 .temp-humidity {
     background-color: lightblue;
+    border: 3px solid grey;
     width: 185px;
     padding-left: 2rem;
     border-radius: 2rem;
+    box-shadow: 10px 10px 20px black;
 }
 body {
+    background-color: lightgrey;
     margin: 0;
   }
 #intro-paragraph {
